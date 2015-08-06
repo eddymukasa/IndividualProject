@@ -4,12 +4,18 @@ import java.io.Serializable;
 
 public class MultiQnDto implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String question;
 	private String optA;
 	private String optB;
 	private String optC;
 	private String optD;
 	private String answer;
+	
+	public MultiQnDto(){}
 	public MultiQnDto(String question, String optA, String optB, String optC,
 			String optD) {
 		super();

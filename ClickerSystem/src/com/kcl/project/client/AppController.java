@@ -3,7 +3,7 @@ package com.kcl.project.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.EventBus;
+import com.google.web.bindery.event.shared.EventBus;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.kcl.project.client.presenters.Impl.LecturersPresenterImpl;
@@ -41,10 +41,8 @@ public class AppController implements ValueChangeHandler<String>{
 
 		String token = event.getValue();
 		
-		if((token != null) && (!token.equals(Tokens.home))){
-			if(token.startsWith(Tokens.login)){
-				doLoginDisplay();
-			}else if(token.startsWith(Tokens.students)){
+		if((token != null) && (!token.equals(Tokens.login))){
+			if(token.startsWith(Tokens.students)){
 				doStudentsDisplay();
 			}else if(token.startsWith(Tokens.lecturers)){
 				doStudentsDisplay();

@@ -1,0 +1,3 @@
+# Module ClickerSystem
+# RPC service class, partial path of RPC policy file
+com.kcl.project.shared.ClickerSystemService, C0F2B3CA7A281C6F82196336B81D76E8.gwt.rpc

@@ -1,0 +1,2 @@
+serviceClass: com.kcl.project.shared.ClickerSystemService
+path: C0F2B3CA7A281C6F82196336B81D76E8.gwt.rpc

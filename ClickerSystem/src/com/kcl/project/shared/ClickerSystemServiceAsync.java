@@ -12,18 +12,18 @@ public interface ClickerSystemServiceAsync {
 	void checkStudentLogin(String login, String type, String password,
 			String course, AsyncCallback<Boolean> callback);
 
-	void getMultipleChoiceQuestions(AsyncCallback<List<MultiQnDto>> callback);
+	void getMultipleChoiceQuestions(AsyncCallback<MultiQnDto> callback);
 
-	void getOneWordQuestions(AsyncCallback<List<OneWordDto>> callback);
+	void getOneWordQuestions(AsyncCallback<OneWordDto> callback);
 
 	void getOpenCanvasQuestions(AsyncCallback<OpenQnDto> callback);
 
 	void setResponse(OpenQnDto response, AsyncCallback<Void> callback);
 
-	void setResponseMultipleChoice(List<MultiQnDto> response,
+	void setResponseMultipleChoice(MultiQnDto response,
 			AsyncCallback<Void> callback);
 
-	void setResponseOneWord(List<OneWordDto> response,
+	void setResponseOneWord(OneWordDto response,
 			AsyncCallback<Void> callback);
 
 }

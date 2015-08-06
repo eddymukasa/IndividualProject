@@ -8,6 +8,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<!-- TODO: Add <servlet-mapping> tags for each <servlet> here. -->
 	<!-- TODO: Optionally add a <welcome-file-list> tag to display a welcome file. -->
 	
+	<servlet>
+	<servlet-name>clickerServlet</servlet-name>
+	<servlet-class>
+		com.kcl.project.server.services.Impl.ClickerSystemServiceImpl
+	</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>clickerServlet</servlet-name>
+	<url-pattern>com.kcl.project.ClickerSystem/service</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>ClickerSystem.html</welcome-file>
 	</welcome-file-list>

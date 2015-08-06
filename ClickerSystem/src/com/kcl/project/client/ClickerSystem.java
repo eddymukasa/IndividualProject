@@ -1,27 +1,34 @@
 package com.kcl.project.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.Window.ClosingEvent;
 import com.google.gwt.user.client.Window.ClosingHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.web.bindery.event.shared.EventBus;
 import com.kcl.project.client.widgets.MultipleQuestion;
+import com.kcl.project.shared.ClickerSystemServiceAsync;
 
-public class ClickerSystem implements EntryPoint, ValueChangeHandler<String>{
+
+public class ClickerSystem implements EntryPoint {
 
 	private Button createQuestion;
 	private Button viewResults;
@@ -51,24 +58,31 @@ public class ClickerSystem implements EntryPoint, ValueChangeHandler<String>{
 	private VerticalPanel dp;
 	private TextArea qn;
 	
+	ClientFactory clientFactory = GWT.create(ClientFactory.class);
+	SimplePanel container = new SimplePanel();
 	
-	@Override
 	public void onModuleLoad() {
-		// TODO Auto-generated method stub
 		
-		setUpGui();
-		setUpHistoryManagement();
-		setUpEventHandling();
+	    
+	    EventBus eventBus = clientFactory.getEventBus();
+	    ClickerSystemServiceAsync rpcService = clientFactory.getRpcServices();
+	    AppController appViewer = new AppController( eventBus,rpcService);
+	    appViewer.go(RootPanel.get());
+	    History.fireCurrentHistoryState();
+	    Window.addWindowClosingHandler(new ClosingHandler(){
+			public void onWindowClosing(ClosingEvent event) {
+				event.setMessage("Ran out of history.  Now leaving application, is that OK?");
+			}
+		});
+		//setUpGui();
+		//setUpHistoryManagement();
+		//setUpEventHandling();
 
 	}
 
-	@Override
-	public void onValueChange(ValueChangeEvent<String> event) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	public void setUpHistoryManagement(){
+	/*public void setUpHistoryManagement(){
 		
 		History.addValueChangeHandler(this);
 		
@@ -79,7 +93,7 @@ public class ClickerSystem implements EntryPoint, ValueChangeHandler<String>{
 				event.setMessage("Ran out of history.  Now leaving application, is that OK?");
 			}
 		});
-	}
+	}*/
 	
 	private void setUpGui(){
 		
@@ -176,4 +190,7 @@ public class ClickerSystem implements EntryPoint, ValueChangeHandler<String>{
 		
 	}
 
+
+
+	
 }
